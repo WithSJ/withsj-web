@@ -1,13 +1,9 @@
 {%extends "layout.html"%}
-{%block navbar%}
 
-<nav class="navbar navbar-expand-md navbar navbar-dark bg-dark">
+{%block navbar%}
+<nav class="navbar navbar-expand-sm navbar-light shadow-sm" style="background-color: #ededff;">
     <a class="navbar-brand" href="{{url_for('home')}}">WithSJ</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-  
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <div class="navbar-collapse">
       <ul class="navbar-nav mr-auto">
         
         <li class="nav-item">
@@ -15,14 +11,39 @@
         </li>
 
         <li class="nav-item">
-            <a class="nav-link" href="{{url_for('arts')}}">Arts</a>
-          </li>
-        
-        <li class="nav-item ">
-            <a class="nav-link" href="{{url_for('about')}}">About <span class="sr-only">(current)</span></a>
+          <a class="nav-link" href="{{url_for('arts')}}">Arts</a>
         </li>
         
-      </ul>
+        <li class="nav-item ">
+          <a class="nav-link" href="{{url_for('about')}}">About <span class="sr-only">(current)</span></a>
+        </li>
+        
     </div>
+  
+    <a href="https://youtube.com/channel/UCaX776Xm7MUaCghaEgJoK0A" target="_blank">
+      <ion-icon name="logo-youtube" style="color: #c4302b;font-size: 28px;"></ion-icon>
+    </a>
+
+    <a href="https://instagram.com/with.sj/" target="_blank">
+      <ion-icon name="logo-instagram" style="color: #833AB4;font-size: 28px;"></ion-icon>
+    </a>
+
+    <a href="https://facebook.com/withsj.in/" target="_blank">
+      <ion-icon name="logo-facebook" style="color: #3b5998;font-size: 28px;"></ion-icon>
+    </a>
+    
+    <a href="https://linkedin.com/in/withsj/" target="_blank">
+      <ion-icon name="logo-linkedin" style="color: #0e76a8;font-size: 28px;"></ion-icon>
+    </a>
+
+    <a href="https://twitter.com/_WithSJ_" target="_blank">
+      <ion-icon name="logo-twitter" style="color: #00acee;font-size: 28px;"></ion-icon>
+    </a>
+
+    <a href="https://github.com/WithSJ" target="_blank">
+      <ion-icon name="logo-github" style="color: #211F1F;font-size: 28px;"></ion-icon>
+    </a>
+    
+
   </nav>
-{%endblock navbar%}
+  {%endblock navbar%}
