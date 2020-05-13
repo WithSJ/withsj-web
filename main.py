@@ -9,7 +9,7 @@ def home():
 
 @app.route("/blogs")
 def blogs():
-    return render_template('blogs.html')
+    return render_template('blogcard.html')
 
 @app.route("/arts")
 def arts():
