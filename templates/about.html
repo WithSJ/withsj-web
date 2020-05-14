@@ -1,4 +1,32 @@
 {%extends "navbar.html"%}
 {%block content%}
-<h1>About</h1>
+
+<div class="p-2 text-center" >
+    <img src="{{url_for('static',filename='images/profile.png')}}" class="rounded-circle shadow mb-3" style="width: 30%; height: 30%;">
+    <h3 class="h2">Sandeep Jadam</h3>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-auto col-md-auto col-lg-8 mb-4">
+                <div class="card shadow" style="width: 95%;">
+                    <div class="card-body">
+                        <h3 class="display-4 mb-1">About me</h3>
+  
+                        <p class="card-text mb-1">
+                            Some quick example text to build on the card title and make up the bulk of the card's content.
+                            Some quick example text to build on the card title and make up the bulk of the card's content.
+                            Some quick example text to build on the card title and make up the bulk of the card's content.
+                            <a href="#" class="card-link">more...</a>        
+                        </p>
+                        
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm col-md col-lg-4">
+                <h2>Skills</h2>
+            </div>
+        </div>
+    </div>
+</div>
+
 {%endblock content%}
