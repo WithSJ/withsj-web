@@ -2,28 +2,56 @@
 {%block content%}
 
 <div class="p-2 text-center" >
-    <img src="{{url_for('static',filename='images/profile.png')}}" class="rounded-circle shadow mb-3" style="width: 30%; height: 30%;">
-    <h3 class="h2">Sandeep Jadam</h3>
-
+    
     <div class="container">
         <div class="row">
             <div class="col-sm-auto col-md-auto col-lg-8 mb-4">
-                <div class="card shadow" style="width: 95%;">
-                    <div class="card-body">
-                        <h3 class="display-4 mb-1">About me</h3>
-  
-                        <p class="card-text mb-1">
-                            Some quick example text to build on the card title and make up the bulk of the card's content.
-                            Some quick example text to build on the card title and make up the bulk of the card's content.
-                            Some quick example text to build on the card title and make up the bulk of the card's content.
-                            <a href="#" class="card-link">more...</a>        
-                        </p>
+                <h3 class="h2 mt-3 mb-2">About me</h3>
+                <div class="container border shadow">
+                    <div class="text-center">
                         
+                        <img src="{{url_for('static',filename='images/profile.png')}}" class="rounded-circle shadow mb-3 mt-4" style="width: 25%; height: 25%;">
+                        <h3 class="h2">Sandeep Jadam</h3>
+  
+                        <p class="lead mb-4">
+                            Some quick example text to build on the card title and make up the bulk of the card's content.
+                            Some quick example text to build on the card title and make up the bulk of the card's content.
+                            Some quick example text to build on the card title and make up the bulk of the card's content.
+                        </p>
                     </div>
                 </div>
+
             </div>
-            <div class="col-sm col-md col-lg-4">
-                <h2>Skills</h2>
+            
+            <div class="col-sm col-md col-lg-4 text-left">
+                <h3 class="h3 text-center mb-1">Skills</h3>                        
+                
+                <h5>Progrmming</h5>
+                <ul class="list-group list-group-horizontal-sm mb-2">
+                    <li class="list-group-item">Python</li>
+                    <li class="list-group-item">C++</li>
+                    <li class="list-group-item">C</li>
+                </ul>
+                
+                <h5>Mobile Devlopment</h5>
+                <ul class="list-group list-group-horizontal-sm mb-2">
+                    <li class="list-group-item">Kivy Framwork</li>
+                </ul>
+
+                <h5>3D Artist</h5>
+                <ul class="list-group list-group-horizontal-sm mb-2">
+                    <li class="list-group-item">Blender 3D</li>
+                    <li class="list-group-item">Photoshop</li>
+                    <li class="list-group-item">Substance Painter</li>
+                </ul>
+                
+                <h5>Web Devlopment</h5>
+                <ul class="list-group list-group-horizontal-sm mb-2">
+                    <li class="list-group-item">Html</li>
+                    <li class="list-group-item">Bootstrap</li>
+                    <li class="list-group-item">Flask Framwork</li>
+                </ul>
+
             </div>
         </div>
     </div>
