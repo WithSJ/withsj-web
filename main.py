@@ -11,9 +11,9 @@ def home():
 def blogs():
     return render_template('blogcard.html')
 
-@app.route("/arts")
-def arts():
-    return render_template('arts.html')
+@app.route("/portfolio")
+def portfolio():
+    return render_template('portfolio.html')
 
 @app.route("/about")
 def about():
