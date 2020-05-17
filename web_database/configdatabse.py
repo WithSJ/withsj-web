@@ -7,20 +7,18 @@
         be carefull when use run this py file because it may be remove all databse.db 
         file data if it already exits use it when you backup your databse.db files 
 """
-import sqlite3,os
+from web_database import os,sqlite3,DATABASE_PATH,connect_database
 
 class Create_WithSJ_Database():
 
     def __init__(self):
-        self.database_path = os.environ["Database"]
         self.connect_database()
     
     def connect_database(self):
         """ Connect to Database or Create database folder and file if file not exist
         """
-        os.chdir(self.database_path)
         if os.path.exists("WithSJ_Database"):
-            conn = sqlite3.connect("WithSJ_Database//database.db")
+            conn = connect_database()
             self.config_database(conn)
         else:
             os.mkdir("WithSJ_Database")
@@ -45,6 +43,8 @@ class Create_WithSJ_Database():
                 Date TEXT NOT NULL ,
                 Post TEXT NOT NULL
                 )""")
+            
+
             conn.close()
 
         except  sqlite3.OperationalError :
