@@ -4,10 +4,31 @@
     <div class="container ">
         <div class="row">
             <div class="col-sm col-md col-lg-8 " >
-                {%block blogcard%}
-                {%endblock blogcard%}
+                {%for data in data_list %}    
+                    <div class="row">
+                            <div class="card shadow" style="width: 95%;">
+                                <div class="card-body">
+                                    <a href="/blogs/uniquelink"><h5 class="card-title mb-0">{{data[0]}}</h5></a>
+                                    
+                                    <h6 class=" mb-2 text-muted">{{data[1]}}</h6>
+                
+                                    <p class="card-text mb-1">
+                                        {{data[2]}}
+                                        <a href="#" class="card-link">more...</a>        
+                                    </p>
+                                    
+                                </div>
+                            </div>
+                        
+                    <!-- end row -->
+                    </div>
+                    
+                    <hr style="width: 70%;">    
+        
+                {%endfor%}
 
             </div>
+            
             <div class="col-sm col-md col-lg-4" >
                 <h1>Side panel</h1>
                 <p>Some features</p>

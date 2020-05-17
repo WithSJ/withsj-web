@@ -1,5 +1,5 @@
 from flask import Flask,render_template,url_for
-
+from web_database.get_posts import Get_Blogs,Get_Portfolio
 app = Flask(__name__)
 
 @app.route("/")
@@ -9,11 +9,13 @@ def home():
 
 @app.route("/blogs")
 def blogs():
-    return render_template('blogcard.html')
+    data_list = Get_Blogs().data()
+    return render_template('blogs.html',data_list=data_list)
 
 @app.route("/portfolio")
 def portfolio():
-    return render_template('portfolio.html')
+    data_list = Get_Portfolio().data()
+    return render_template('portfolio.html',data_list=data_list)
 
 @app.route("/about")
 def about():
