@@ -1,0 +1,52 @@
+{%extends "navbar.html"%}
+{%block content%}
+
+
+<div class="text-center container mt-md-5 mt-lg-5" >
+    
+    <div class="row">
+        
+        <div class=" col-lg-4 border shadow p-5  bg-white rounded">
+            <form class="form-signin" action="" method="POST">
+                {{ form.hidden_tag() }}
+                 <fieldset class="form-group">
+                    
+                    <legend class="h1 font-weight-normal" >WithSJ</legend>
+                    <p class="card-subtitle mb-2 text-muted ">Admin</p>
+                
+                    {% if form.username.errors %}
+                        {{form.username(class="form-control form-control-md mb-2 is-invalid",placeholder="Username")}}
+                        <div class="invalid-feedback">
+                        {% for error in form.username.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                        </div>
+                    {% else%}
+                        {{form.username(class="form-control form-control-md mb-2 ",placeholder="Username")}}
+                    {% endif %}    
+                
+                    {% if form.password.errors %}
+                        {{form.password(class="form-control form-control-md mb-2 is-invalid",placeholder="Password")}}
+                        <div class="invalid-feedback">
+                        {% for error in form.password.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                        </div>
+                    {% else%}
+                        {{form.password(class="form-control form-control-md mb-2 ",placeholder="Password")}}
+                    {% endif %}    
+                            
+                </fieldset>
+                {{form.submit(class="btn btn-md btn-primary btn-block")}}
+                <hr>
+                
+            </form>
+        </div>         
+    
+    </div>
+    
+    
+</div>
+
+
+{%endblock content%}

@@ -18,7 +18,18 @@
   <body >
       {%block navbar%}
       {%endblock navbar%}
-  
+
+      {% with messages =get_flashed_messages(with_categories=true) %}
+        {% if messages%}
+            {% for category, message in messages%}
+                <div class="alert alert-{{category}}" role="{{category}}">
+                    {{message}}
+                </div>
+            {% endfor %}
+        {% endif %}
+    
+      {% endwith %}
+
       <div class="container p-3" >
         {%block content%}
         {%endblock content%}
