@@ -2,33 +2,131 @@
 {%block content%}
 
 <div class="container">
-  <h2>Toggleable Tabs</h2>
+  <h2>Admin Pannel</h2>
+  <form class="form-signin" action="" method="POST"  enctype="multipart/form-data" >
+    {{ form[0].hidden_tag() }}
+    {{form[0].logout(class="btn btn-sm btn-primary btn-block",style="width:100px;")}}
+</form>
   <br>
   <!-- Nav tabs -->
   <ul class="nav nav-tabs" role="tablist">
     <li class="nav-item">
-      <a class="nav-link active" data-toggle="tab" href="#home">Home</a>
+      <a class="nav-link active" data-toggle="tab" href="#blogs">Blogs</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" data-toggle="tab" href="#menu1">Menu 1</a>
+      <a class="nav-link" data-toggle="tab" href="#portfolio">Portfolio</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" data-toggle="tab" href="#menu2">Menu 2</a>
+      <a class="nav-link" data-toggle="tab" href="#about">About</a>
     </li>
   </ul>
 
   <!-- Tab panes -->
   <div class="tab-content">
-    <div id="home" class="container tab-pane active"><br>
-      <h3>HOME</h3>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+    <div id="blogs" class="container tab-pane active"><br>
+      <h3>New Blog</h3>
+      <form class="form-signin" action="" method="POST" enctype="multipart/form-data">
+        {{ form[1].hidden_tag() }}
+         <fieldset class="form-group">
+            {% if form[1].title.errors %}
+                {{form[1].title(class="form-control form-control-md mb-2 is-invalid",placeholder="Title")}}
+                <div class="invalid-feedback">
+                {% for error in form[1].title.errors %}
+                    <span>{{ error }}</span>
+                {% endfor %}
+                </div>
+            {% else%}
+                {{form[1].title(class="form-control form-control-md mb-3",placeholder="Title")}}
+            {% endif %}    
+        
+            
+            <div class="row mb-2">
+              <div class="col">
+                {{ form[1].day.label(class="h5") }}
+                {{ form[1].day(class="custom-select",**{"onchange":"getCategories()"}) }}
+              </div>
+              
+              <div class="col">
+                {{ form[1].month.label(class="h5") }}
+                {{ form[1].month(class="custom-select",**{"onchange":"getCategories()"}) }}
+              </div>
+              <div class="col">
+                {{ form[1].year.label(class="h5") }}
+                {{ form[1].year(class="custom-select",**{"onchange":"getCategories()"}) }}
+              </div>
+            </div>
+            
+            <div class="row">
+              <div class="col">
+                {{form[1].autodate(class="custom-control custom-checkbox mb-4")}}
+              </div>
+              
+            </div>
+            
+            <div class="row">
+              <div class="col">
+                {% if form[1].post.errors %}
+                {{form[1].post(class="form-control ",placeholder="Blog Post",style="height:300px;")}}
+                <div class="invalid-feedback">
+                {% for error in form[1].post.errors %}
+                    <span>{{ error }}</span>
+                {% endfor %}
+                </div>
+                {% else%}
+                  {{form[1].post(class="form-control form-control-md mb-2 ",placeholder="Blog Post",style="height:300px;")}}
+                {% endif %}  
+              </div>
+            </div>
+          
+            <hr>
+          
+            <div class="row">
+              <div class="col">
+                {% if form[1].username.errors %}
+                {{form[1].username(class="form-control form-control-md mb-2 is-invalid",placeholder="Username")}}
+                <div class="invalid-feedback">
+                  {% for error in form[1].username.errors %}
+                      <span>{{ error }}</span>
+                  {% endfor %}
+                </div>
+                
+                {% else%}
+                  {{form[1].username(class="form-control form-control-md mb-2 ",placeholder="Username")}}
+                {% endif %}    
+            
+              </div>
+
+              <div class="col">
+                {% if form[1].password.errors %}
+                  {{form[1].password(class="form-control form-control-md mb-2 is-invalid",placeholder="Password")}}
+                  <div class="invalid-feedback">
+                  {% for error in form[1].password.errors %}
+                      <span>{{ error }}</span>
+                  {% endfor %}
+                  </div>
+                {% else%}
+                  {{form[1].password(class="form-control form-control-md mb-2 ",placeholder="Password")}}
+                {% endif %}
+  
+              </div>
+              
+            </div>
+          </fieldset>
+          {{form[1].submit(class="btn btn-md btn-primary btn-block")}}
+          <hr>
+          
+      </form>
+    
+    
     </div>
-    <div id="menu1" class="container tab-pane fade"><br>
-      <h3>Menu 1</h3>
+    
+    
+    <div id="portfolio" class="container tab-pane fade"><br>
+      <h3>Add In Portfolio</h3>
       <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
     </div>
-    <div id="menu2" class="container tab-pane fade"><br>
-      <h3>Menu 2</h3>
+    <div id="about" class="container tab-pane fade"><br>
+      <h3>Edit About</h3>
       <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>
     </div>
   </div>

@@ -5,7 +5,7 @@ class Get_Blogs():
         """Get all data from blogs table"""
         conn = connect_database()
         cur = conn.cursor()
-        cur.execute("SELECT * FROM Blogs")
+        cur.execute("SELECT * FROM Blogs ORDER BY Date DESC")
         return cur.fetchall()
 
 class Get_Portfolio():
