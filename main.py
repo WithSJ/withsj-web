@@ -4,9 +4,11 @@ from web_database.posts_upload import BlogPost
 from form import LoginForm , AdminPannelForm, BlogForm
 from random import randint
 
+USERNAME="WithSJ"
+PASSWORD="qwerty1234"
+
 def get_adminkey():
     return hex(randint(0,9**64))[2:]
-
 
 global adminkey
 adminkey = get_adminkey()
@@ -40,8 +42,9 @@ def adminpannel(getkey):
 
     if getkey == adminkey:
         if form[1].submit.data == True:
+            
             date = str(form[1].year.data +"-"+ str(form[1].month.data) +"-"+ str(form[1].day.data))
-            BlogPost(form[1].title.data,date,form[1].post.data).upload()
+            BlogPost(form[1].title.data, date, form[1].post.data).upload()
             return render_template('adminpannel.html',form=form)
         
         
@@ -57,7 +60,7 @@ def adminpannel(getkey):
 def admin():
     form = LoginForm()
     if form.validate_on_submit():
-        if form.username.data == "WithSJ" and form.password.data == "qwerty1234":
+        if form.username.data == USERNAME and form.password.data == PASSWORD:
             global adminkey
             adminkey = adminkey = get_adminkey()
             flash(f"{form.username.data} you are log in now...","success")

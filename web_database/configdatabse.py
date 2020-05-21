@@ -36,7 +36,8 @@ class Create_WithSJ_Database():
                 CREATE TABLE Blogs(
                 Title TEXT NOT NULL,
                 Date TEXT NOT NULL ,
-                Post TEXT NOT NULL
+                Post TEXT NOT NULL,
+                BlogID TEXT NOT NULL UNIQUE
                 )""")
             
             cur.execute("""
