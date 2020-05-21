@@ -4,8 +4,8 @@
 <div class="container">
   <h2>Admin Pannel</h2>
   <form class="form-signin" action="" method="POST"  enctype="multipart/form-data" >
-    {{ form[0].hidden_tag() }}
-    {{form[0].logout(class="btn btn-sm btn-primary btn-block",style="width:100px;")}}
+    {{ form["admin_pannel"].hidden_tag() }}
+    {{form["admin_pannel"].logout(class="btn btn-sm btn-primary btn-block",style="width:100px;")}}
 </form>
   <br>
   <!-- Nav tabs -->
@@ -26,54 +26,54 @@
     <div id="blogs" class="container tab-pane active"><br>
       <h3>New Blog</h3>
       <form class="form-signin" action="" method="POST" enctype="multipart/form-data">
-        {{ form[1].hidden_tag() }}
+        {{ form["blog_form"].hidden_tag() }}
          <fieldset class="form-group">
-            {% if form[1].title.errors %}
-                {{form[1].title(class="form-control form-control-md mb-2 is-invalid",placeholder="Title")}}
+            {% if form["blog_form"].title.errors %}
+                {{form["blog_form"].title(class="form-control form-control-md mb-2 is-invalid",placeholder="Title")}}
                 <div class="invalid-feedback">
                 {% for error in form[1].title.errors %}
                     <span>{{ error }}</span>
                 {% endfor %}
                 </div>
             {% else%}
-                {{form[1].title(class="form-control form-control-md mb-3",placeholder="Title")}}
+                {{form["blog_form"].title(class="form-control form-control-md mb-3",placeholder="Title")}}
             {% endif %}    
         
             
             <div class="row mb-2">
               <div class="col">
-                {{ form[1].day.label(class="h5") }}
-                {{ form[1].day(class="custom-select",**{"onchange":"getCategories()"}) }}
+                {{ form["blog_form"].day.label(class="h5") }}
+                {{ form["blog_form"].day(class="custom-select",**{"onchange":"getCategories()"}) }}
               </div>
               
               <div class="col">
-                {{ form[1].month.label(class="h5") }}
-                {{ form[1].month(class="custom-select",**{"onchange":"getCategories()"}) }}
+                {{ form["blog_form"].month.label(class="h5") }}
+                {{ form["blog_form"].month(class="custom-select",**{"onchange":"getCategories()"}) }}
               </div>
               <div class="col">
-                {{ form[1].year.label(class="h5") }}
-                {{ form[1].year(class="custom-select",**{"onchange":"getCategories()"}) }}
+                {{ form["blog_form"].year.label(class="h5") }}
+                {{ form["blog_form"].year(class="custom-select",**{"onchange":"getCategories()"}) }}
               </div>
             </div>
             
             <div class="row">
               <div class="col">
-                {{form[1].autodate(class="custom-control custom-checkbox mb-4")}}
+                {{form["blog_form"].autodate(class="custom-control custom-checkbox mb-4")}}
               </div>
               
             </div>
             
             <div class="row">
               <div class="col">
-                {% if form[1].post.errors %}
-                {{form[1].post(class="form-control ",placeholder="Blog Post",style="height:300px;")}}
+                {% if form["blog_form"].post.errors %}
+                {{form["blog_form"].post(class="form-control ",placeholder="Blog Post",style="height:300px;")}}
                 <div class="invalid-feedback">
-                {% for error in form[1].post.errors %}
+                {% for error in form["blog_form"].post.errors %}
                     <span>{{ error }}</span>
                 {% endfor %}
                 </div>
                 {% else%}
-                  {{form[1].post(class="form-control form-control-md mb-2 ",placeholder="Blog Post",style="height:300px;")}}
+                  {{form["blog_form"].post(class="form-control form-control-md mb-2 ",placeholder="Blog Post",style="height:300px;")}}
                 {% endif %}  
               </div>
             </div>
@@ -82,37 +82,37 @@
           
             <div class="row">
               <div class="col">
-                {% if form[1].username.errors %}
+                {% if form["blog_form"].username.errors %}
                 {{form[1].username(class="form-control form-control-md mb-2 is-invalid",placeholder="Username")}}
                 <div class="invalid-feedback">
-                  {% for error in form[1].username.errors %}
+                  {% for error in form["blog_form"].username.errors %}
                       <span>{{ error }}</span>
                   {% endfor %}
                 </div>
                 
                 {% else%}
-                  {{form[1].username(class="form-control form-control-md mb-2 ",placeholder="Username")}}
+                  {{form["blog_form"].username(class="form-control form-control-md mb-2 ",placeholder="Username")}}
                 {% endif %}    
             
               </div>
 
               <div class="col">
-                {% if form[1].password.errors %}
-                  {{form[1].password(class="form-control form-control-md mb-2 is-invalid",placeholder="Password")}}
+                {% if form["blog_form"].password.errors %}
+                  {{form["blog_form"].password(class="form-control form-control-md mb-2 is-invalid",placeholder="Password")}}
                   <div class="invalid-feedback">
-                  {% for error in form[1].password.errors %}
+                  {% for error in form["blog_form"].password.errors %}
                       <span>{{ error }}</span>
                   {% endfor %}
                   </div>
                 {% else%}
-                  {{form[1].password(class="form-control form-control-md mb-2 ",placeholder="Password")}}
+                  {{form["blog_form"].password(class="form-control form-control-md mb-2 ",placeholder="Password")}}
                 {% endif %}
   
               </div>
               
             </div>
           </fieldset>
-          {{form[1].submit(class="btn btn-md btn-primary btn-block")}}
+          {{form["blog_form"].submit(class="btn btn-md btn-primary btn-block")}}
           <hr>
           
       </form>

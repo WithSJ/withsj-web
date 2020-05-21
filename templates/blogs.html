@@ -8,13 +8,13 @@
                     <div class="row">
                             <div class="card shadow" style="width: 95%;">
                                 <div class="card-body">
-                                    <a href="/blogs/{{data[3]}}"><h5 class="card-title mb-0">{{data[0]}}</h5></a>
+                                    <a href="/blogs/{{data['blogid']}}"><h5 class="card-title mb-0">{{data["title"]}}</h5></a>
                                     
-                                    <h6 class=" mb-2 text-muted">{{data[1]}}</h6>
+                                    <h6 class=" mb-2 text-muted">{{data["date"]}}</h6>
                 
                                     <p class="card-text mb-1">
-                                        {{data[2][:230]}}
-                                        <a href="#" class="card-link">more...</a>        
+                                        {{data["post"][:230]}}
+                                        <a href="/blogs/{{data['blogid']}}" class="card-link">more...</a>        
                                     </p>
                                     
                                 </div>

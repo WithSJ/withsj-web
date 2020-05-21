@@ -1,5 +1,5 @@
 from flask import Flask,render_template,url_for,flash,redirect
-from web_database.get_posts import Get_Blogs,Get_Portfolio
+from web_database.get_posts import Get_Blogs,Get_Portfolio,Get_Blogpage
 from web_database.posts_upload import BlogPost
 from form import LoginForm , AdminPannelForm, BlogForm
 from random import randint
@@ -26,6 +26,12 @@ def blogs():
     data_list = Get_Blogs().data()
     return render_template('blogs.html',data_list=data_list)
 
+@app.route("/blogs/<string:blogid>")
+def blogpage(blogid):
+    data = Get_Blogpage(blogid).data()
+    
+    return render_template('blogpage.html',data=data)
+
 @app.route("/portfolio")
 def portfolio():
     data_list = Get_Portfolio().data()
@@ -38,17 +44,17 @@ def about():
 @app.route("/<string:getkey>",methods=['GET','POST'])
 def adminpannel(getkey):
     global adminkey
-    form = AdminPannelForm(),BlogForm()
+    form = {"admin_pannel":AdminPannelForm(),"blog_form":BlogForm()}
 
     if getkey == adminkey:
-        if form[1].submit.data == True:
+        if form["blog_form"].submit.data == True:
             
-            date = str(form[1].year.data +"-"+ str(form[1].month.data) +"-"+ str(form[1].day.data))
-            BlogPost(form[1].title.data, date, form[1].post.data).upload()
+            date = str(form["blog_form"].year.data +"-"+ str(form["blog_form"].month.data) +"-"+ str(form["blog_form"].day.data))
+            BlogPost(form["blog_form"].title.data, date, form["blog_form"].post.data).upload()
             return render_template('adminpannel.html',form=form)
         
         
-        if form[0].logout.data == True:
+        if form["admin_pannel"].logout.data == True:
             adminkey = get_adminkey()
             return redirect(url_for("home"))
         
@@ -67,9 +73,7 @@ def admin():
             return redirect("/" + adminkey)        
     return render_template('admin.html',form=form)
 
-@app.route("/blogs/<string:name>")
-def blogpage(name):
-    return render_template('blogpage.html',name=name)
+
     
 
 if __name__ == "__main__":
