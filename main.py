@@ -29,7 +29,6 @@ def blogs():
 @app.route("/blogs/<string:blogid>")
 def blogpage(blogid):
     data = Get_Blogpage(blogid).data()
-    
     return render_template('blogpage.html',data=data)
 
 @app.route("/portfolio")

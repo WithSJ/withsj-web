@@ -28,7 +28,10 @@ class Get_Blogpage():
         conn = connect_database()
         cur = conn.cursor()
         cur.execute("""SELECT * FROM Blogs WHERE BlogID = :blogid""",{"blogid":self.Blog_ID})
-        return cur.fetchone()
+        data = cur.fetchone()
+        data_dict = {"title":data[0],"date":data[1],"post":data[2],"blogid":data[3]}
+        del data
+        return data_dict
 
 class Get_Portfolio():
     def data(self):
