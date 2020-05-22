@@ -1,9 +1,10 @@
+
 from flask import Flask,render_template,url_for,flash,redirect
 from web_database.get_posts import Get_Blogs,Get_Portfolio,Get_Blogpage
 from web_database.posts_upload import BlogPost
 from form import LoginForm , AdminPannelForm, BlogForm
 from random import randint
-
+from datetime import datetime
 USERNAME="WithSJ"
 PASSWORD="qwerty1234"
 
@@ -24,9 +25,11 @@ def home():
 @app.route("/blogs")
 def blogs():
     data_list = Get_Blogs().data()
+    if data_list == None:
+        return render_template('blogs.html')
     return render_template('blogs.html',data_list=data_list)
 
-@app.route("/blogs/<string:blogid>")
+@app.route("/blogs/<blogid>")
 def blogpage(blogid):
     data = Get_Blogpage(blogid).data()
     return render_template('blogpage.html',data=data)
@@ -40,7 +43,7 @@ def portfolio():
 def about():
     return render_template('about.html')
 
-@app.route("/<string:getkey>",methods=['GET','POST'])
+@app.route("/<getkey>",methods=['GET','POST'])
 def adminpannel(getkey):
     global adminkey
     form = {"admin_pannel":AdminPannelForm(),"blog_form":BlogForm()}
@@ -48,7 +51,11 @@ def adminpannel(getkey):
     if getkey == adminkey:
         if form["blog_form"].submit.data == True:
             
-            date = str(form["blog_form"].year.data +"-"+ str(form["blog_form"].month.data) +"-"+ str(form["blog_form"].day.data))
+            if form["blog_form"].autodate.data == True:
+                date = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+            else:
+                date = str(form["blog_form"].year.data +"-"+ str(form["blog_form"].month.data) +"-"+ str(form["blog_form"].day.data))
+            
             BlogPost(form["blog_form"].title.data, date, form["blog_form"].post.data).upload()
             return render_template('adminpannel.html',form=form)
         
@@ -76,4 +83,4 @@ def admin():
     
 
 if __name__ == "__main__":
-    app.run(debug=True)
+        app.run(debug=True)

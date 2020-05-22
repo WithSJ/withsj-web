@@ -3,10 +3,12 @@
 
 <div class="container">
   <h2>Admin Pannel</h2>
+  
   <form class="form-signin" action="" method="POST"  enctype="multipart/form-data" >
     {{ form["admin_pannel"].hidden_tag() }}
     {{form["admin_pannel"].logout(class="btn btn-sm btn-primary btn-block",style="width:100px;")}}
-</form>
+  </form>
+  
   <br>
   <!-- Nav tabs -->
   <ul class="nav nav-tabs" role="tablist">
@@ -56,12 +58,24 @@
               </div>
             </div>
             
-            <div class="row">
+            <div class="row mb-4 mt-2">
               <div class="col">
-                {{form["blog_form"].autodate(class="custom-control custom-checkbox mb-4")}}
+
+                {{form["blog_form"].autodate(class="custom-checkbox")}}
+                {{form["blog_form"].autodate.label()}}
               </div>
               
             </div>
+            
+            <div class="row mb-4 mt-2">
+              <div class="col">
+                {{form["blog_form"].blogimage.label()}}
+                {{form["blog_form"].blogimage(class="form-control-file")}}
+              </div>
+              
+            </div>
+            
+
             
             <div class="row">
               <div class="col">
