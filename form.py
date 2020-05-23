@@ -16,6 +16,7 @@ class BlogForm(LoginForm):
     post = TextAreaField('Blog Post',validators=[DataRequired()])
     blogimage = FileField("Image")
     submit = SubmitField('Upload')
+    preview = SubmitField('Preview')
 
 class AdminPannelForm(FlaskForm):
     logout = SubmitField("Logout")
