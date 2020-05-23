@@ -17,7 +17,7 @@ class BlogPost():
         conn.close()
 
     def get_blogid(self,h_link = hex(randint(0,32))[2:] ):
-        blogid = self.title.replace(" ","%") +"%"+h_link
+        blogid = self.title.replace(" ","+") +"+"+h_link
         conn = connect_database()
         cur = conn.cursor()
         cur.execute("SELECT * FROM Blogs WHERE BlogID = :blogid", {"blogid":blogid})
