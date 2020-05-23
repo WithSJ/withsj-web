@@ -5,11 +5,20 @@ from web_database.posts_upload import BlogPost
 from form import LoginForm , AdminPannelForm, BlogForm
 from random import randint
 from datetime import datetime
+
 USERNAME="WithSJ"
 PASSWORD="qwerty1234"
 
 def get_adminkey():
     return hex(randint(0,9**64))[2:]
+
+def rendered_to_html(renderhtml):
+    renderhtml= renderhtml.replace('&lt;','<')
+    renderhtml = renderhtml.replace('&gt;','>')
+    renderhtml = renderhtml.replace('&#34;','"')
+    renderhtml = renderhtml.replace('&#39;',"'")
+    renderhtml = renderhtml.replace('&amp;','&')
+    return renderhtml
 
 global adminkey
 adminkey = get_adminkey()
@@ -27,12 +36,13 @@ def blogs():
     data_list = Get_Blogs().data()
     if data_list == None:
         return render_template('blogs.html')
+
     return render_template('blogs.html',data_list=data_list)
 
 @app.route("/blogs/<blogid>")
 def blogpage(blogid):
     data = Get_Blogpage(blogid).data()
-    return render_template('blogpage.html',data=data)
+    return rendered_to_html(render_template('blogpage.html',data=data))
 
 @app.route("/portfolio")
 def portfolio():

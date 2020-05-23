@@ -1,5 +1,5 @@
 from web_database import connect_database
-
+from bs4 import BeautifulSoup
 class Get_Blogs():
     def data(self):
         """Get all data from blogs table"""
@@ -12,7 +12,7 @@ class Get_Blogs():
         for data in data_list:
             data_dict["title"] = data[0]
             data_dict["date"] = data[1]
-            data_dict["post"] = data[2]
+            data_dict["post"] = BeautifulSoup(data[2]).get_text()
             data_dict["blogid"] = data[3]
             data_dic_list.append(data_dict)
             data_dict = dict()
