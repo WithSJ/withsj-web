@@ -1,18 +1,26 @@
-from web_database import connect_database
+from web_database import connect_database, DATABASE_IMAGES
 from random import randint
+from flask import url_for
 class BlogPost():
-    def __init__(self,title,date,post):
+    def __init__(self,title,date,post,image=None):
         self.title = title 
         self.date = date
         self.post = post    
+        self.image = image
 
     def upload(self):
         rand_link = hex(randint(0,32))[2:]
+        get_blogid = self.get_blogid(h_link=rand_link)
+        
+        if self.image != None:
+            self.image.save(DATABASE_IMAGES + get_blogid) #backup images
+            # self.image.save(url_for('static',filename='images/' + get_blogid))
+
         conn = connect_database()
         conn.execute("""
         INSERT INTO Blogs(Title,Date,Post,BlogID)
         VALUES(:title,:date,:post,:blogid)
-        """,{"title":self.title,"date":self.date,"post":self.post,"blogid":self.get_blogid(h_link=rand_link)})
+        """,{"title":self.title,"date":self.date,"post":self.post,"blogid":get_blogid})
         conn.commit()
         conn.close()
 

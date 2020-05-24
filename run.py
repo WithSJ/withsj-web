@@ -1,35 +1,7 @@
-
-from flask import Flask,render_template,url_for,flash,redirect
-from web_database.get_posts import Get_Blogs,Get_Portfolio,Get_Blogpage
-from web_database.posts_upload import BlogPost
-from form import LoginForm , AdminPannelForm, BlogForm
-from random import randint
-from datetime import datetime
-
-USERNAME="WithSJ"
-PASSWORD="qwerty1234"
-
-def get_adminkey():
-    return hex(randint(0,9**64))[2:]
-
-def rendered_to_html(renderhtml):
-    """
-    Render templates return data str but html reserver char are in code 
-    rendered_to_html convert codes to char
-    """
-    renderhtml= renderhtml.replace('&lt;','<')
-    renderhtml = renderhtml.replace('&gt;','>')
-    renderhtml = renderhtml.replace('&#34;','"')
-    renderhtml = renderhtml.replace('&#39;',"'")
-    renderhtml = renderhtml.replace('&amp;','&')
-    return renderhtml
+from withsj import *
 
 global adminkey
 adminkey = get_adminkey()
-
-app = Flask(__name__)
-app.config['SECRET_KEY']="withsj key is here"
-
 @app.route("/")
 @app.route("/home")
 def home():
@@ -46,6 +18,7 @@ def blogs():
 @app.route("/blogs/<blogid>")
 def blogpage(blogid):
     data = Get_Blogpage(blogid).data()
+    # imagefile = os.path.join(app.root_path,"/static/images",blogid)
     return rendered_to_html(render_template('blogpage.html',data=data))
 
 @app.route("/portfolio")
@@ -66,6 +39,7 @@ def adminpannel(getkey):
         
         # Preview Blog 
         if form["blog_form"].preview.data == True:
+
             # GEt Date
             if form["blog_form"].autodate.data == True:
                 date = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
@@ -86,6 +60,7 @@ def adminpannel(getkey):
         # Submit Blog Post here 
         if form["blog_form"].submit.data == True:
             
+            imagedata = form["blog_form"].blogimage.data
             # GEt Date
             if form["blog_form"].autodate.data == True:
                 date = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
@@ -93,7 +68,7 @@ def adminpannel(getkey):
                 date = str(form["blog_form"].year.data +"-"+ str(form["blog_form"].month.data) +"-"+ str(form["blog_form"].day.data))
             # End Geting Date
             
-            BlogPost(form["blog_form"].title.data, date, form["blog_form"].post.data).upload() #upload post to database
+            BlogPost(form["blog_form"].title.data, date, form["blog_form"].post.data,image=imagedata).upload() #upload post to database
             return render_template('adminpannel.html',form=form)
         # End Submit Blog Post
         
@@ -117,7 +92,5 @@ def admin():
     return render_template('admin.html',form=form)
 
 
-    
-
 if __name__ == "__main__":
-        app.run(debug=True)
+    app.run(debug=True)
