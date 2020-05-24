@@ -18,9 +18,7 @@ class Create_WithSJ_Database():
         """ Connect to Database or Create database folders and file if file not exist
         """
         if os.path.exists(os.path.join(DATABASE_PATH,"WithSJ_Database")):
-            conn = connect_database()
-            os.makedirs(os.path.join(DATABASE_PATH,"WithSJ_Database/Files/Images"))
-            
+            conn = connect_database()            
             self.config_database(conn)
         else:
             os.mkdir(os.path.join(DATABASE_PATH,"WithSJ_Database"))

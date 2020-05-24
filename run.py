@@ -1,7 +1,17 @@
-from withsj import *
+
+from withsj import app,get_adminkey,rendered_to_html
+from flask import render_template,url_for,flash,redirect
+from web_database.get_posts import Get_Blogs,Get_Portfolio,Get_Blogpage
+from web_database.posts_upload import BlogPost
+from withsj.form import LoginForm , AdminPannelForm, BlogForm
+from datetime import datetime
+
+USERNAME="WithSJ"
+PASSWORD="qwerty1234"
 
 global adminkey
 adminkey = get_adminkey()
+
 @app.route("/")
 @app.route("/home")
 def home():

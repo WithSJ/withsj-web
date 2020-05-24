@@ -1,13 +1,7 @@
 
-from flask import Flask,render_template,url_for,flash,redirect
-from web_database.get_posts import Get_Blogs,Get_Portfolio,Get_Blogpage
-from web_database.posts_upload import BlogPost
-from withsj.form import LoginForm , AdminPannelForm, BlogForm
+from flask import Flask
 from random import randint
-from datetime import datetime
 
-USERNAME="WithSJ"
-PASSWORD="qwerty1234"
 
 app = Flask(__name__)
 app.config['SECRET_KEY']="withsj key is here"

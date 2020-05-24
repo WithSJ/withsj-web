@@ -11,6 +11,7 @@
                         
                 <h6 class=" mb-2 text-muted mb-4">{{data["date"]}}</h6>
 
+                <img src="{{url_for('static',filename='images/'+ data['blogid'])}}" class="img-fluid rounded" alt="Responsive image">
                 <div class="text-left">
                     
                     {{data["post"]}}
