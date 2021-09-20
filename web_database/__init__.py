@@ -1,8 +1,8 @@
 import sqlite3,os
 
-<<<<<<< HEAD
+
 DATABASE_PATH=os.getcwd()
-=======
+
 
 
 DATABASE_FILE = "WithSJ_Database//database.db"
