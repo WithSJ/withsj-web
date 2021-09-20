@@ -1,6 +1,6 @@
 import sqlite3,os
 
-DATABASE_PATH=os.environ["Database"]
+DATABASE_PATH=os.getcwd()
 DATABASE_FILE = "WithSJ_Database//database.db"
 DATABASE_IMAGES = os.path.join(DATABASE_PATH,"WithSJ_Database/Files/Images/") 
 def connect_database():
